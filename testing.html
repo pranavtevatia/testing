@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Testing Site - Login Journey</title>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'GA_MEASUREMENT_ID');
+  </script>
+</head>
+<body>
+  <h1>Testing Site - Login Journey</h1>
+  <form id="loginForm">
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username">
+    <br>
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password">
+    <br>
+    <button type="submit" id="loginButton">Login</button>
+  </form>
+
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      var username = document.getElementById('username').value;
+      var password = document.getElementById('password').value;
+
+      // Simulating login process (replace with actual login logic)
+      if (username === 'testuser' && password === 'testpassword') {
+        // Login successful
+        gtag('event', 'login', {
+          'event_category': 'User Actions',
+          'event_label': 'Login',
+          'username': username
+        });
+        alert('Login successful');
+      } else {
+        // Login failed
+        gtag('event', 'login_failed', {
+          'event_category': 'User Actions',
+          'event_label': 'Login Failed',
+          'username': username
+        });
+        alert('Login failed. Please try again.');
+      }
+    });
+  </script>
+</body>
+</html>
